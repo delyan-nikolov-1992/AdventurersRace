@@ -144,6 +144,25 @@ var app = (function (win) {
     var getYear = (function () {
         return new Date().getFullYear();
     }());
+    
+    // create an object to store the models for each view
+    var models = {
+        home: {
+          title: 'Home'
+        },
+        settings: {
+          title: 'Settings'
+        },
+        contacts: {
+          title: 'Contacts',
+          ds: new kendo.data.DataSource({
+            data: [{ id: 1, name: 'Bob' }, { id: 2, name: 'Mary' }, { id: 3, name: 'John' }]
+          }),
+          alert: function(e) {
+            alert(e.data.name);
+          }
+        }
+      };
 
     return {
         showAlert: showAlert,
@@ -153,6 +172,7 @@ var app = (function (win) {
         mobileApp: mobileApp,
         helper: AppHelper,
         everlive: el,
-        getYear: getYear
+        getYear: getYear,
+        models: models
     };
 }(window));
