@@ -150,8 +150,8 @@ var app = (function (win) {
         home: {
           title: 'Home'
         },
-        settings: {
-          title: 'Settings'
+        camera: {
+          title: 'Camera'
         },
         contacts: {
           title: 'Contacts',
