@@ -184,29 +184,35 @@ var app = (function (win) {
                     },
                     function (picData) {
                         el.data('Images').create({
-                            'Image': picData.result.Id,
-                            'Location': location
-                        }, function (data) {
-                            console.log(data);
-                        }, error);
+                                'Image': picData.result.Id,
+                                'Location': location
+                            },
+                            function (data) {
+                                
+                            }, error);
                     }, error);
             };
+
             var error = function () {
                 navigator.notification.alert("Unfortunately we could not add the image");
             };
+
             var picConfig = {
                 destinationType: Camera.DestinationType.DATA_URL,
                 targetHeight: 400,
                 targetWidth: 400
             };
+
             var geoConfig = {
                 enableHighAccuracy: true
             };
+
             var geoSuccess = function (data) {
                 location = {
                     longitude: data.coords.longitude,
                     latitude: data.coords.latitude
                 };
+                app.checkLocation.init(location);
 
                 navigator.camera.getPicture(picSuccess, error, picConfig);
             };
