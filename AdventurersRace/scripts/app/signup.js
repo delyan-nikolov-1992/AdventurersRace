@@ -66,7 +66,7 @@ app.Signup = (function () {
                 DisplayName: '',
                 Email: '',
                 Gender: '0',
-                About: '',
+                Phone: '',
                 Friends: [],
                 BirthDate: new Date()
             });

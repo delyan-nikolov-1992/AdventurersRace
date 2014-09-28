@@ -14,11 +14,11 @@ app.Login = (function () {
         var $loginUsername;
         var $loginPassword;
 
-        var isFacebookLogin = app.isKeySet(appSettings.facebook.appId) && app.isKeySet(appSettings.facebook.redirectUri);
-        var isGoogleLogin = app.isKeySet(appSettings.google.clientId) && app.isKeySet(appSettings.google.redirectUri);
-        var isLiveIdLogin = app.isKeySet(appSettings.liveId.clientId) && app.isKeySet(appSettings.liveId.redirectUri);
-        var isAdfsLogin = app.isKeySet(appSettings.adfs.adfsRealm) && app.isKeySet(appSettings.adfs.adfsEndpoint);
-        var isAnalytics = analytics.isAnalytics();
+        //var isFacebookLogin = app.isKeySet(appSettings.facebook.appId) && app.isKeySet(appSettings.facebook.redirectUri);
+        //var isGoogleLogin = app.isKeySet(appSettings.google.clientId) && app.isKeySet(appSettings.google.redirectUri);
+        //var isLiveIdLogin = app.isKeySet(appSettings.liveId.clientId) && app.isKeySet(appSettings.liveId.redirectUri);
+        //var isAdfsLogin = app.isKeySet(appSettings.adfs.adfsRealm) && app.isKeySet(appSettings.adfs.adfsEndpoint);
+        //var isAnalytics = analytics.isAnalytics();
 
         var init = function () {
 
@@ -29,7 +29,7 @@ app.Login = (function () {
             $loginUsername = $('#loginUsername');
             $loginPassword = $('#loginPassword');
 
-            if (!isFacebookLogin) {
+            /*if (!isFacebookLogin) {
                 $('#loginWithFacebook').addClass('disabled');
                 console.log('Facebook App ID and/or Redirect URI not set. You cannot use Facebook login.');
             }
@@ -47,7 +47,7 @@ app.Login = (function () {
             }
             if (!isAnalytics) {
                 console.log('EQATEC product key is not set. You cannot use EQATEC Analytics service.');
-            }
+            }*/
         };
 
         var show = function () {
@@ -65,15 +65,14 @@ app.Login = (function () {
             app.everlive.Users.login(username, password)
             .then(function () {
                 // EQATEC analytics monitor - track login type
-                if (isAnalytics) {
+                /*if (isAnalytics) {
                     analytics.TrackFeature('Login.Regular');
-                }
+                }*/
 
                 return app.Users.load();
             })
             .then(function () {
-
-                app.mobileApp.navigate('views/activitiesView.html');
+                app.mobileApp.navigate('views/home.html');
             })
             .then(null,
                   function (err) {
@@ -83,7 +82,7 @@ app.Login = (function () {
         };
 
         // Authenticate using Facebook credentials
-        var loginWithFacebook = function() {
+        /*var loginWithFacebook = function() {
 
             if (!isFacebookLogin) {
                 return;
@@ -265,7 +264,7 @@ app.Login = (function () {
                     }
                 });
             });
-        };
+        };*/
 
         var showMistAlert = function () {
             alert(appSettings.messages.mistSimulatorAlert);
@@ -275,11 +274,11 @@ app.Login = (function () {
             init: init,
             show: show,
             getYear: app.getYear,
-            login: login,
-            loginWithFacebook: loginWithFacebook,
+            login: login//,
+            /*loginWithFacebook: loginWithFacebook,
             loginWithGoogle: loginWithGoogle,
             loginWithLiveID: loginWithLiveID,
-            loginWithADSF: loginWithADSF
+            loginWithADSF: loginWithADSF*/
         };
 
     }());
