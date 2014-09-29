@@ -1,9 +1,10 @@
 var app = (function (win) {
     'use strict';
-
+    
     // Global error handling
     var showAlert = function (message, title, callback) {
-        navigator.notification.alert(message, callback || function () {}, title, 'OK');
+        navigator.notification.alert(message, callback || function () {
+        }, title, 'OK');
     };
 
     var showError = function (message) {
@@ -22,7 +23,8 @@ var app = (function (win) {
 
     // Global confirm dialog
     var showConfirm = function (message, title, callback) {
-        navigator.notification.confirm(message, callback || function () {}, title, ['OK', 'Cancel']);
+        navigator.notification.confirm(message, callback || function () {
+        }, title, ['OK', 'Cancel']);
     };
 
     var isNullOrEmpty = function (value) {
@@ -61,11 +63,6 @@ var app = (function (win) {
         }, 'Exit', ['OK', 'Cancel']);
     };
 
-    function neshto(err) {
-
-        console.log(err);
-    }
-
     function checkConnection() {
         var networkState = navigator.connection.type;
 
@@ -75,7 +72,7 @@ var app = (function (win) {
     }
 
     //function onBatteryLow(info) {
-      //  alert("Battery Level Low " + info.level + "%");
+    //    alert("Battery Level Low " + info.level + "%");
     //}
 
     var onDeviceReady = function () {
@@ -113,9 +110,9 @@ var app = (function (win) {
 
     // Initialize Everlive SDK
     var el = new Everlive({
-        apiKey: appSettings.everlive.apiKey,
-        scheme: appSettings.everlive.scheme
-    });
+                              apiKey: appSettings.everlive.apiKey,
+                              scheme: appSettings.everlive.scheme
+                          });
 
     var emptyGuid = '00000000-0000-0000-0000-000000000000';
 
@@ -155,10 +152,10 @@ var app = (function (win) {
 
     // Initialize KendoUI mobile application
     var mobileApp = new kendo.mobile.Application(document.body, {
-        transition: 'slide',
-        statusBarStyle: statusBarStyle,
-        skin: 'flat'
-    });
+                                                     transition: 'slide',
+                                                     statusBarStyle: statusBarStyle,
+                                                     skin: 'flat'
+                                                 });
 
     var getYear = (function () {
         return new Date().getFullYear();
@@ -176,24 +173,24 @@ var app = (function (win) {
         users: {
             title: 'All Users',
             ds: new kendo.data.DataSource({
-                type: 'everlive',
-                transport: {
+                                              type: 'everlive',
+                                              transport: {
                     typeName: 'Users'
                 },
-                schema: {
+                                              schema: {
                     model: {
-                        id: Everlive.idField
-                    }
+                                                          id: Everlive.idField
+                                                      }
                 },
-                serverSorting: true,
-                sort: {
+                                              serverSorting: true,
+                                              sort: {
                     field: 'Points',
                     dir: 'desc'
                 },
-                serverPaging: true,
-                page: 1,
-                pageSize: 10
-            }),
+                                              serverPaging: true,
+                                              page: 1,
+                                              pageSize: 10
+                                          }),
             alert: function (e) {
                 alert(e.data.name);
             }
@@ -201,53 +198,54 @@ var app = (function (win) {
     };
 
     var listView = kendo.observable({
-        addImage: function () {
-            var location = {};
+                                        addImage: function () {
+                                            var location = {};
 
-            var picSuccess = function (data) {
-                app.checkLocation.init(location);
+                                            var picSuccess = function (data) {
+                                                app.checkLocation.init(location);
 
-                var id;
-                el.Files.create({
-                        Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
-                        ContentType: "image/jpeg",
-                        base64: data
-                    },
-                    function (picData) {
-                        el.data('Images').create({
-                                'Image': picData.result.Id,
-                                'Location': location
-                            },
-                            function (data) {}, error);
-                    }, error);
-            };
+                                                var id;
+                                                el.Files.create({
+                                                                    Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
+                                                                    ContentType: "image/jpeg",
+                                                                    base64: data
+                                                                },
+                                                                function (picData) {
+                                                                    el.data('Images').create({
+                                                                                                 'Image': picData.result.Id,
+                                                                                                 'Location': location
+                                                                                             },
+                                                                                             function (data) {
+                                                                                             }, error);
+                                                                }, error);
+                                            };
 
-            var error = function () {
-                navigator.notification.alert("Unfortunately we could not add the image");
-            };
+                                            var error = function () {
+                                                navigator.notification.alert("Unfortunately we could not add the image");
+                                            };
 
-            var picConfig = {
-                destinationType: Camera.DestinationType.DATA_URL,
-                targetHeight: 400,
-                targetWidth: 400
-            };
+                                            var picConfig = {
+                                                destinationType: Camera.DestinationType.DATA_URL,
+                                                targetHeight: 400,
+                                                targetWidth: 400
+                                            };
 
-            var geoConfig = {
-                enableHighAccuracy: true
-            };
+                                            var geoConfig = {
+                                                enableHighAccuracy: true
+                                            };
 
-            var geoSuccess = function (data) {
-                location = {
-                    longitude: data.coords.longitude,
-                    latitude: data.coords.latitude
-                };
+                                            var geoSuccess = function (data) {
+                                                location = {
+                                                    longitude: data.coords.longitude,
+                                                    latitude: data.coords.latitude
+                                                };
 
-                navigator.camera.getPicture(picSuccess, error, picConfig);
-            };
+                                                navigator.camera.getPicture(picSuccess, error, picConfig);
+                                            };
 
-            navigator.geolocation.getCurrentPosition(geoSuccess, error, geoConfig);
-        }
-    });
+                                            navigator.geolocation.getCurrentPosition(geoSuccess, error, geoConfig);
+                                        }
+                                    });
 
     return {
         showAlert: showAlert,

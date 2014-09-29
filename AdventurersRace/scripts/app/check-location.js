@@ -6,44 +6,13 @@ app.checkLocation = app.checkLocation || {};
         var EarthRadius = 6371; // Radius of the earth in km
         var SearchedDistance = 5; // in km
 
-        function onSuccess(contact) {
-            alert("Save Success");
-        };
-
-        function onError(contactError) {
-            alert("Error = " + contactError.code);
-        };
-
         function loadPhotos() {
             Everlive.$.Users.currentUser(function (currUser) {
                 var userId = currUser.result.Id; // the user info
-                createContact();
                 checkLocation(userId);
             }, function (error) {
                 error; // error info if no current user
             });
-        }
-
-        function createContact() {
-            var contact = navigator.contacts.create();
-            contact.displayName = "Plumber";
-            contact.nickname = "Plumber"; // specify both to support all devices
-
-            // populate some fields
-            var name = new ContactName();
-            name.givenName = "Jane";
-            name.familyName = "Doe";
-            contact.name = name;
-
-            var phoneNumbers = [];
-            phoneNumbers[0] = new ContactField('work', '212-555-1234', false);
-            phoneNumbers[1] = new ContactField('mobile', '917-555-5432', true); // preferred number
-            phoneNumbers[2] = new ContactField('home', '203-555-7890', false);
-            contact.phoneNumbers = phoneNumbers;
-
-            // save to device
-            contact.save(onSuccess, onError);
-            console.log(contact);
         }
 
         function checkLocation(userId) {
