@@ -146,15 +146,70 @@ var app = (function (win) {
     // create an object to store the models for each view
     var models = {
         home: {
-            title: 'Home'
+            title: 'Welcome to Adventurers Race',
+            imageUrl: 'data/images/HappyTraveler.jpg'
         },
         camera: {
             title: 'Camera'
         },
-        contacts: {
-            title: 'Contacts',
+        users: {
+            title: 'All Users',
             ds: new kendo.data.DataSource({
                 data: [{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
+                    id: 1,
+                    name: 'Bob'
+                }, {
+                    id: 2,
+                    name: 'Mary'
+                }, {
+                    id: 3,
+                    name: 'John'
+                },{
                     id: 1,
                     name: 'Bob'
                 }, {
@@ -177,7 +232,7 @@ var app = (function (win) {
 
             var picSuccess = function (data) {
                 app.checkLocation.init(location);
-                
+
                 var id;
                 el.Files.create({
                         Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -217,7 +272,7 @@ var app = (function (win) {
             };
 
             navigator.geolocation.getCurrentPosition(geoSuccess, error, geoConfig);
-        },
+        }
     });
 
     return {
