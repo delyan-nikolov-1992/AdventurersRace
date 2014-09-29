@@ -25,6 +25,7 @@ app.Signup = (function () {
             }
 
             dataSource.BirthDate = birthDate;
+            dataSource.Points = 0;
 
             Everlive.$.Users.register(
                 dataSource.Username,
