@@ -1,10 +1,10 @@
 <div data-role="view" data-title="All Users" data-layout="default" data-model="app.models.users">
-  <ul data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: ds"></ul>
+  <ul data-role="listview" data-style="inset" data-template="usersTemplate" data-bind="source: ds"></ul>
 </div>
 
 <!-- this is the template used by the listview. template items are automatically
      wrapped in an <li> by Kendo UI Mobile -->
-<script type="text/x-kendo-template" id="contactsTemplate">
+<script type="text/x-kendo-template" id="usersTemplate">
     <div class="users">
       <a data-bind="click: alert">#: data.Username #</a>
       <a data-bind="click: alert">#: data.Points #</a>

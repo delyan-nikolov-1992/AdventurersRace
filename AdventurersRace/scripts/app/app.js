@@ -69,8 +69,23 @@ var app = (function (win) {
         }
     }
 
+    function checkConnection() {
+        var networkState = navigator.connection.type;
+
+        if (networkState === Connection.NONE) {
+            alert('No internet access!');
+        }
+    }
+
+    function onBatteryLow(info) {
+        alert("Battery Level Low " + info.level + "%");
+    }
+
     var onDeviceReady = function () {
-        checkConnection();
+        document.addEventListener("click", checkConnection, false);
+
+        window.addEventListener("batterylow", onBatteryLow, false);
+
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
 
