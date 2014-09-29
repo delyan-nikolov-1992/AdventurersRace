@@ -5,5 +5,8 @@
 <!-- this is the template used by the listview. template items are automatically
      wrapped in an <li> by Kendo UI Mobile -->
 <script type="text/x-kendo-template" id="contactsTemplate">
-  <a data-bind="click: alert">#: data.name #</a>
+    <div class="users">
+      <a data-bind="click: alert">#: data.Username #</a>
+      <a data-bind="click: alert">#: data.Points #</a>
+    </div>
 </script>

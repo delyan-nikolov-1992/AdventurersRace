@@ -61,7 +61,16 @@ var app = (function (win) {
         }, 'Exit', ['OK', 'Cancel']);
     };
 
+    function checkConnection() {
+        var networkState = navigator.connection.type;
+
+        if (networkState === Connection.NONE) {
+            alert("There is no internet connection!");
+        }
+    }
+
     var onDeviceReady = function () {
+        checkConnection();
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
 
@@ -147,7 +156,7 @@ var app = (function (win) {
     var models = {
         home: {
             title: 'Welcome to Adventurers Race',
-            imageUrl: 'data/images/HappyTraveler.jpg'
+            imageUrl: 'styles/images/HappyTraveler.jpg'
         },
         camera: {
             title: 'Camera'
@@ -155,70 +164,23 @@ var app = (function (win) {
         users: {
             title: 'All Users',
             ds: new kendo.data.DataSource({
-                data: [{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                },{
-                    id: 1,
-                    name: 'Bob'
-                }, {
-                    id: 2,
-                    name: 'Mary'
-                }, {
-                    id: 3,
-                    name: 'John'
-                }]
+                type: 'everlive',
+                transport: {
+                    typeName: 'Users'
+                },
+                schema: {
+                    model: {
+                        id: Everlive.idField
+                    }
+                },
+                serverSorting: true,
+                sort: {
+                    field: 'Points',
+                    dir: 'desc'
+                },
+                serverPaging: true,
+                page: 1,
+                pageSize: 10
             }),
             alert: function (e) {
                 alert(e.data.name);

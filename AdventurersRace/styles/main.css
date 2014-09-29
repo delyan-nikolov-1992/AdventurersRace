@@ -35,7 +35,7 @@
 #friendsApp.km-flat .km-navbar,
 #friendsApp.km-flat .km-content {
     border: 0 none;
-    background: url("http://lahinchseaworld.com/wp-content/uploads/2013/07/computer-color-wallpapers-blue-photo-desktop-gradient-81860.jpg") no-repeat;
+    background: url("images/Gradient.jpg") no-repeat;
     color: #fff;
     font-family: "Open Sans", sans-serif;
 }
@@ -516,4 +516,7 @@
 }
 img {
     max-width: 100%;
+}
+.users {
+    background-color: DarkSlateBlue;
 }
