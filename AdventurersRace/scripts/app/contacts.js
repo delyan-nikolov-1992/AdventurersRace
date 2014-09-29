@@ -8,19 +8,20 @@ app.Contacts = (function () {
     'use strict'
 
     var contactsViewModel = (function () {
+        var result = [];
 
-        var contacts = new kendo.data.DataSource({
+        var users = new kendo.data.DataSource({
             data: [{
-                id: 1,
-                name: 'Bob'
+                Points: 1,
+                Username: 'Bob'
                 }, {
-                id: 2,
-                name: 'Mary'
+                Points: 2,
+                Username: 'Mary'
                 }]
         });
 
         return {
-            contacts: contacts
+            contacts: users
         };
 
     }());
