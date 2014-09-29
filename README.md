@@ -1,4 +1,4 @@
 AdventurersRace
 ===============
 
-Project for Hybrid Apss
+Project for Hybrid Aps
