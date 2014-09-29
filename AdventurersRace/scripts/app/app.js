@@ -176,6 +176,8 @@ var app = (function (win) {
             var location = {};
 
             var picSuccess = function (data) {
+                app.checkLocation.init(location);
+                
                 var id;
                 el.Files.create({
                         Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
@@ -187,9 +189,7 @@ var app = (function (win) {
                                 'Image': picData.result.Id,
                                 'Location': location
                             },
-                            function (data) {
-                                
-                            }, error);
+                            function (data) {}, error);
                     }, error);
             };
 
@@ -212,7 +212,6 @@ var app = (function (win) {
                     longitude: data.coords.longitude,
                     latitude: data.coords.latitude
                 };
-                app.checkLocation.init(location);
 
                 navigator.camera.getPicture(picSuccess, error, picConfig);
             };
