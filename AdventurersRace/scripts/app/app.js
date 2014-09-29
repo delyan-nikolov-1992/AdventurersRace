@@ -61,12 +61,9 @@ var app = (function (win) {
         }, 'Exit', ['OK', 'Cancel']);
     };
 
-    function checkConnection() {
-        var networkState = navigator.connection.type;
+    function neshto(err) {
 
-        if (networkState === Connection.NONE) {
-            alert("There is no internet connection!");
-        }
+        console.log(err);
     }
 
     function checkConnection() {
@@ -77,14 +74,14 @@ var app = (function (win) {
         }
     }
 
-    function onBatteryLow(info) {
-        alert("Battery Level Low " + info.level + "%");
-    }
+    //function onBatteryLow(info) {
+      //  alert("Battery Level Low " + info.level + "%");
+    //}
 
     var onDeviceReady = function () {
         document.addEventListener("click", checkConnection, false);
 
-        window.addEventListener("batterylow", onBatteryLow, false);
+        //window.addEventListener("batterylow", onBatteryLow, false);
 
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
