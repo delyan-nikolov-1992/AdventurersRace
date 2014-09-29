@@ -17,7 +17,7 @@ app.addPoint = app.addPoint || {};
                 contentType: "application/json",
                 data: JSON.stringify(userPoints),
                 success: function (data) {
-
+                    alert("You have one point more.")
                 },
                 error: function (error) {
                     alert(JSON.stringify(error));
