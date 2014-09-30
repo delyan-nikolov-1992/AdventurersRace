@@ -201,7 +201,7 @@ var app = (function (win) {
                                               pageSize: 10
                                           }),
             alert: function (e) {
-                alert(e.data.name);
+                alert("Username: " + e.data.Username + "; Points: " + e.data.Points + ";");
             }
         }
     };
