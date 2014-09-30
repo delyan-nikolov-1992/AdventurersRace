@@ -1,12 +1,12 @@
 <div data-role="view" data-title="All Contacts" data-layout="default" data-show="app.contacts.show" data-model="app.contacts">
-  <ul data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: vm"></ul>
+    <ul id="listContacts" data-id="listContacts" data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: result"></ul>
 </div>
 
 <!-- this is the template used by the listview. template items are automatically
-     wrapped in an <li> by Kendo UI Mobile -->
+wrapped in an <li> by Kendo UI Mobile -->
 <script type="text/x-kendo-template" id="contactsTemplate">
     <div class="users">
-      <a>#: data.Username #</a>
-      <a>#: data.Points #</a>    
+        <a data-bind="text: Username"></a>
+        <a data-bind="text: Points"></a>
     </div>
 </script>
