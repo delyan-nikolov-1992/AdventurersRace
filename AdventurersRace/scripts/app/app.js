@@ -70,12 +70,22 @@ var app = (function (win) {
             alert('No internet access!');
         }
     }
+    
+    function onOffline() {
+        alert('No internet access!');
+    }
+    
+    function onOnline() {
+        alert('You have already internet access and you can use the full functions of the app!');
+    }
 
     function onBatteryLow(info) {
         alert("Battery Level Low " + info.level + "%");
     }
 
     var onDeviceReady = function () {
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
         document.addEventListener("click", checkConnection, false);
 
         window.addEventListener("batterylow", onBatteryLow, false);
