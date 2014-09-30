@@ -72,7 +72,7 @@ var app = (function (win) {
     }
     
     function onOffline() {
-        alert('No internet access!');
+        alert('You have lost internet connection!');
     }
     
     function onOnline() {
@@ -86,9 +86,8 @@ var app = (function (win) {
     var onDeviceReady = function () {
         document.addEventListener("offline", onOffline, false);
         document.addEventListener("online", onOnline, false);
-        document.addEventListener("click", checkConnection, false);
-
         window.addEventListener("batterylow", onBatteryLow, false);
+        document.addEventListener("click", checkConnection, false);
 
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
