@@ -25,6 +25,8 @@ app.contacts = (function () {
                     phoneNumbers.push(currentPhone);
                 }
             }
+            
+            getUserFromDb();
         }
 
         function onError() {
@@ -39,18 +41,19 @@ app.contacts = (function () {
         }
         
         getContacts();
-        getUserFromDb();
         
         function getUserFromDb() {
+            var el = new Everlive('HAp0eHbnKuAuxQsa');
             var filter = new Everlive.Query();
             filter.where().isin('Phone', phoneNumbers);
 
-            var data = everlive.data('Users');
+            var data = el.data('Users');
             
             data.get(filter)
                 .then(function(data) {
                     //alert(JSON.stringify(data));
                     console.log(data);
+                    console.log(data.result[0].Username);
                 },
                       function(error) {
                           alert(JSON.stringify(error));
@@ -69,8 +72,9 @@ app.contacts = (function () {
         };
         
         var vm = kendo.observable(data);
-        
-        kendo.bind(e.view.element, vm);
+        app.contacts.vm = vm;
+        console.log(vm);
+        //kendo.bind(e.view.element, vm);
     }
 
     return {

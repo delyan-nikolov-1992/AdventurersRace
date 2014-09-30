@@ -71,14 +71,14 @@ var app = (function (win) {
         }
     }
 
-    //function onBatteryLow(info) {
-    //    alert("Battery Level Low " + info.level + "%");
-    //}
+    function onBatteryLow(info) {
+        alert("Battery Level Low " + info.level + "%");
+    }
 
     var onDeviceReady = function () {
         document.addEventListener("click", checkConnection, false);
 
-        //window.addEventListener("batterylow", onBatteryLow, false);
+        window.addEventListener("batterylow", onBatteryLow, false);
 
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
@@ -244,7 +244,18 @@ var app = (function (win) {
                                             };
 
                                             navigator.geolocation.getCurrentPosition(geoSuccess, error, geoConfig);
+                                        },
+                                        username: function() {
+                                            var username = app.Users.currentUser.get('data').Username;
+                                            
+                                            return username;
+                                        },
+                                        points: function() {
+                                            var points = app.Users.currentUser.get('data').Points;
+                                            
+                                            return points;
                                         }
+
                                     });
 
     return {

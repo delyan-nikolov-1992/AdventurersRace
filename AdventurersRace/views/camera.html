@@ -1,3 +1,10 @@
-<div data-role="view" data-title="Camera" data-layout="default" data-model="app.listView">
+<div data-role="view" data-title="Camera" data-layout="default" data-show="app.listview" data-model="app.listView">
     <button data-role="button" data-icon="organize" data-align="right" data-bind="click: addImage">Add</button>
+    <div id="userInfo">
+        <span class="propertyStyle">Username:</span>
+        <span data-bind="text: username"></span>
+        <br />
+        <span class="propertyStyle">Points:</span>
+        <span data-bind="text: points"></span>
+    </div>
 </div>

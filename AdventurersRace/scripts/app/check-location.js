@@ -40,6 +40,8 @@ app.checkLocation = app.checkLocation || {};
 
                     if (result) {
                         app.addPoint.init(userId);
+                    } else{
+                        alert("You have added the image, but you have already a point from this location.");
                     }
                 },
                 error: function (error) {

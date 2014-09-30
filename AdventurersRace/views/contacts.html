@@ -1,4 +1,4 @@
-<div data-role="view" data-title="All Contacts" data-layout="default" data-show="app.contacts.show">
+<div data-role="view" data-title="All Contacts" data-layout="default" data-show="app.contacts.show" data-model="app.contacts">
   <ul data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: vm"></ul>
 </div>
 
@@ -6,7 +6,7 @@
      wrapped in an <li> by Kendo UI Mobile -->
 <script type="text/x-kendo-template" id="contactsTemplate">
     <div class="users">
-      <a data-bind="click: alert">#: data.Username #</a>
-      <a data-bind="click: alert">#: data.Points #</a>    
+      <a>#: data.Username #</a>
+      <a>#: data.Points #</a>    
     </div>
 </script>
